@@ -24,6 +24,14 @@ module Gemsurance
 
       generate_report
       if @gem_infos.any? { |info| info.vulnerable? }
+        if @options[:print]
+          $stderr.puts "Vulnerable:"
+          @gem_infos.each do |info|
+            if info.vulnerable?
+              $stderr.puts "  #{info.name}: #{info.current_version}"
+            end
+          end
+        end
         exit 1
       elsif @gem_infos.any? { |info| info.outdated? } && @options[:fail_outdated]
         exit 2

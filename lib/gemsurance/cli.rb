@@ -37,6 +37,10 @@ module Gemsurance
             end
           end
 
+          opts.on("--print", "Print all vulnerabilities to stderr") do |lib|
+            options[:print] = true
+          end
+
           opts.on_tail("-h", "--help", "Show this help") do
             puts opts
             exit
